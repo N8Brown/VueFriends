@@ -12,4 +12,5 @@ I have to decided to recreate this project using Vue instead of React as a way t
   - Phone Number
   - Address
   - Company
-###Enjoy!
+
+### Enjoy!
