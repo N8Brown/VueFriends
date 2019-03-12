@@ -9,15 +9,26 @@
 </head>
 <body>
   <div id="app">
-    <div>
-      <select v-model="avatarType">
-        <option v-for="option in avatarOptions" v-bind:value="option.value">
-          {{ option.text }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <input type="text" v-model="searchText">
+    <div class="fixed-header">
+      <div>
+        <p>RoboFriends +</p>
+      </div>      
+      <div>
+        <label for="avatar-type">Avatar Type: </label>
+      </div>
+      <div>
+        <select id="avatar-type" v-model="avatarType">
+          <option v-for="option in avatarOptions" v-bind:value="option.value">
+            {{ option.text }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <input type="text" placeholder="Search by name" v-model="searchText">
+      </div>
+      <!-- <div>
+        <button>Add Contact</button>
+      </div> -->
     </div>
     <div class="card-container">
       <div class="contact-card" v-for="contact in filterContacts" :key="contact.id">

@@ -1,13 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
 #app {
   text-align: center;
+  max-height: 100vh;
 }
 
 .card-container {
   display: flex;
-  /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: center;
-  /* text-align: center; */
+  padding-top: 30vh;
 }
 
 .contact-card {
@@ -20,4 +30,17 @@
 .avatar {
   width: 200px;
   height: 200px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.fixed-header {
+  background: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding-bottom: 10px;
 }
