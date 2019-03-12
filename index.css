@@ -66,14 +66,18 @@ select {
   text-align: center;
 }
 
+.contact-name {
+  margin-bottom: 0;
+}
+
+.contact-email {
+  margin-top: 0;
+}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
   h1 {
-    font-size: 1.85em;
-  }
-
-  .first-item {
-    margin-top: -10px;
+    font-size: 1.75em;
   }
 
   .card-container {
@@ -87,10 +91,6 @@ select {
     font-size: 2.5em;
   }  
 
-  .first-item {
-    margin-top: -25px;
-  }
-
   .card-container {
     padding-top: 165px;
   }
@@ -101,10 +101,6 @@ select {
   h1 {
     font-size: 2.75em;
   }  
-
-  .first-item {
-    margin-top: -25px;
-  }
 
   .card-container {
     padding-top: 175px;
@@ -117,10 +113,6 @@ select {
     font-size: 3em;
   }  
 
-  .first-item {
-    margin-top: -25px;
-  }
-
   .card-container {
     padding-top: 185px;
   }
@@ -131,10 +123,6 @@ select {
   h1 {
     font-size: 3.5em;
   }  
-
-  .first-item {
-    margin-top: -25px;
-  }
 
   .card-container {
     padding-top: 210px;

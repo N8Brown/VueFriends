@@ -27,15 +27,12 @@
       <div class="header-item">
         <input type="text" placeholder="Search by name" v-model="searchText">
       </div>
-      <!-- <div>
-        <button>Add Contact</button>
-      </div> -->
     </div>
     <div class="card-container">
       <div class="contact-card" v-for="contact in filterContacts" :key="contact.id">
         <img class="avatar" :src='"https://robohash.org/" + contact.id + avatarType' alt="Robot Friend">
-        <p>{{contact.name}}</p>
-        <p>{{contact.email}}</p>
+        <p class="contact-name">{{contact.name}}</p>
+        <p class="contact-email">{{contact.email}}</p>
       </div>
     </div>
   </div>
