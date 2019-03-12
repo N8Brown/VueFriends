@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Bungee+Shade|Roboto" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <title>Vue Robo-Friends</title>
 </head>
@@ -11,19 +12,19 @@
   <div id="app">
     <div class="fixed-header">
       <div>
-        <p>RoboFriends +</p>
+        <h1>RoboFriends +</h1>
       </div>      
-      <div>
+      <div class="header-item first-item">
         <label for="avatar-type">Avatar Type: </label>
       </div>
-      <div>
+      <div class="header-item">
         <select id="avatar-type" v-model="avatarType">
           <option v-for="option in avatarOptions" v-bind:value="option.value">
             {{ option.text }}
           </option>
         </select>
       </div>
-      <div>
+      <div class="header-item">
         <input type="text" placeholder="Search by name" v-model="searchText">
       </div>
       <!-- <div>
