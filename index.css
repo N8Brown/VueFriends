@@ -2,18 +2,20 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: linear-gradient(to right, rgb(172, 221, 247), rgb(47, 145, 242), rgb(23, 94, 200), rgb(31, 57, 184));
+  background: linear-gradient(to right,rgb(65, 184, 131),rgb(255, 255, 255), rgb(53, 73, 94));
 }
 
 h1 {
   margin: 0;
   font-family: 'Bungee Shade', cursive;
+  color: rgb(53, 73, 94);
 }
 
 #app {
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  color: rgba(0, 0, 0, .65);
+  /* color: rgba(0, 0, 0, .65); */
+  color: rgb(53, 73, 94);
   padding-bottom: 10px;
 }
 
@@ -24,7 +26,7 @@ h1 {
 }
 
 .contact-card {
-  background: rgb(172, 221, 247);
+  background: radial-gradient(at center, rgb(255, 255, 255),rgb(65, 184, 131), rgb(53, 73, 94));
   width: 250px;
   border: 1px solid rgba(0, 0, 0, .5);
   border-radius: 5px;
@@ -37,7 +39,7 @@ h1 {
 }
 
 .fixed-header {
-  background: linear-gradient(to right, rgb(172, 221, 247), rgb(47, 145, 242), rgb(23, 94, 200), rgb(31, 57, 184));
+  background: linear-gradient(to right,rgb(65, 184, 131),rgb(255, 255, 255), rgb(53, 73, 94));
   position: fixed;
   width: 100%;
   top: 0;
