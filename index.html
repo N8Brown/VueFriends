@@ -12,7 +12,7 @@
   <div id="app">
     <div class="fixed-header">
       <div>
-        <h1>RoboFriends +</h1>
+        <h1>Vue-Friends</h1>
       </div>      
       <div class="header-item first-item">
         <label for="avatar-type">Avatar Type: </label>
@@ -31,8 +31,8 @@
     <div class="card-container">
       <div class="contact-card" v-for="contact in filterContacts" :key="contact.id">
         <img class="avatar" :src='"https://robohash.org/" + contact.id + avatarType' alt="Robot Friend">
-        <p class="contact-name">{{contact.name}}</p>
-        <p class="contact-email">{{contact.email}}</p>
+        <p class="contact-name"><strong>{{contact.name}}</strong></p>
+        <p class="contact-email"><strong>{{contact.email}}</strong></p>
       </div>
     </div>
   </div>
