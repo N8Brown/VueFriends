@@ -1,3 +1,43 @@
+Vue.component('card',{
+  props: ['contact', 'avatar'],
+  template:`
+  <div class="contact-card" :key="contact.id" @click="contactModal">
+    <img class="avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
+    <p class="contact-name"><strong>{{contact.name}}</strong></p>
+    <p class="contact-email"><strong>{{contact.email}}</strong></p>
+  </div>
+  `,
+  methods: {
+    contactModal: function() {
+      this.contact.fullCard = !this.contact.fullCard;
+    }
+  }
+});
+
+Vue.component('modal',{
+  props: ['contact', 'avatar'],
+  template:`
+  <div class="modal-container" :key="contact.id" @click="contactModal" v-if="this.contact.fullCard">
+    <div class="full-card">
+      <header>
+        <img class="avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
+      </header>
+      <p>Name: {{contact.name}}</p>
+      <p>Username: {{contact.username}}</p>
+      <p>Email: {{contact.email}}</p>
+      <p>Phone: {{contact.phone}}</p>
+      <p>Address: {{contact.address.city}}</p>
+      <p>Website: {{contact.website}}</p>
+    </div>
+  </div>
+  `,
+  methods: {
+    contactModal: function() {
+      this.contact.fullCard = !this.contact.fullCard;
+    }
+  }
+});
+
 const app = new Vue({
   el: '#app',
   data: {
@@ -11,6 +51,7 @@ const app = new Vue({
     searchText: "",
     contacts:[
       {
+        "fullCard": false,
         "id": 1,
         "name": "Leanne Graham",
         "username": "Bret",
@@ -22,9 +63,10 @@ const app = new Vue({
           "zipcode": "92998-3874",
         },
         "phone": "1-770-736-8031 x56442",
-        "website": "hildegard.org",
+        "website": "hildegard.org"
       },
       {
+        "fullCard": false,
         "id": 2,
         "name": "Ervin Howell",
         "username": "Antonette",
@@ -36,9 +78,10 @@ const app = new Vue({
           "zipcode": "90566-7771",
         },
         "phone": "010-692-6593 x09125",
-        "website": "anastasia.net",
+        "website": "anastasia.net"
       },
       {
+        "fullCard": false,
         "id": 3,
         "name": "Clementine Bauch",
         "username": "Nathan",
@@ -50,9 +93,10 @@ const app = new Vue({
           "zipcode": "59590-4157",
         },
         "phone": "1-463-123-4447",
-        "website": "ramiro.info",
+        "website": "ramiro.info"
       },
       {
+        "fullCard": false,
         "id": 4,
         "name": "Patricia Lebsack",
         "username": "Karianne",
@@ -64,9 +108,10 @@ const app = new Vue({
           "zipcode": "53919-4257",
         },
         "phone": "493-170-9623 x156",
-        "website": "kale.biz",
+        "website": "kale.biz"
       },
       {
+        "fullCard": false,
         "id": 5,
         "name": "Chelsey Dietrich",
         "username": "Kamren",
@@ -78,9 +123,10 @@ const app = new Vue({
           "zipcode": "33263",
         },
         "phone": "(254)954-1289",
-        "website": "demarco.info",
+        "website": "demarco.info"
       },
       {
+        "fullCard": false,
         "id": 6,
         "name": "Mrs. Dennis Schulist",
         "username": "Leopoldo_Corkery",
@@ -92,9 +138,10 @@ const app = new Vue({
           "zipcode": "23505-1337",
         },
         "phone": "1-477-935-8478 x6430",
-        "website": "ola.org",
+        "website": "ola.org"
       },
       {
+        "fullCard": false,
         "id": 7,
         "name": "Kurtis Weissnat",
         "username": "Elwyn.Skiles",
@@ -106,9 +153,10 @@ const app = new Vue({
           "zipcode": "58804-1099",
         },
         "phone": "210.067.6132",
-        "website": "elvis.io",
+        "website": "elvis.io"
       },
       {
+        "fullCard": false,
         "id": 8,
         "name": "Nicholas Runolfsdottir V",
         "username": "Maxime_Nienow",
@@ -120,9 +168,10 @@ const app = new Vue({
           "zipcode": "45169",
         },
         "phone": "586.493.6943 x140",
-        "website": "jacynthe.com",
+        "website": "jacynthe.com"
       },
       {
+        "fullCard": false,
         "id": 9,
         "name": "Glenna Reichert",
         "username": "Delphine",
@@ -134,9 +183,10 @@ const app = new Vue({
           "zipcode": "76495-3109",
         },
         "phone": "(775)976-6794 x41206",
-        "website": "conrad.com",
+        "website": "conrad.com"
       },
       {
+        "fullCard": false,
         "id": 10,
         "name": "Clementina DuBuque",
         "username": "Moriah.Stanton",
@@ -148,7 +198,7 @@ const app = new Vue({
           "zipcode": "31428-2261",
         },
         "phone": "024-648-3804",
-        "website": "ambrose.net",
+        "website": "ambrose.net"
       }
     ]
   },
