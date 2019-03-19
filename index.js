@@ -204,10 +204,10 @@ const app = new Vue({
   },
   computed: {
     filterContacts: function(){
-        return this.contacts.filter(contact => {
-            return (contact.name.toLowerCase().includes(this.searchText.toLowerCase())? contact: null);
-          }
-        )
-      } 
+      return this.contacts.filter(contact => {
+          return (contact.name.toLowerCase().includes(this.searchText.toLowerCase())? contact: null);
+        }
+      )
+    } 
   },
 });
