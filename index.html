@@ -10,6 +10,7 @@
 </head>
 <body>
   <div id="app">
+
     <div class="fixed-header">
       <div>
         <h1>Vue-Friends</h1>
@@ -26,12 +27,59 @@
       </div>
       <div class="header-item">
         <input type="text" placeholder="Search by name" v-model="searchText">
+        <button @click="toggleForm">Add Friend</button>
+      </div>
+    </div>
+
+    <div class="form-container" v-if="addForm">
+      <div class="contact-form">
+        <div class="row">
+          <div class="label">Name: </div>
+          <div class="details">
+            <input id="name" type="text" placeholder="full name" v-model="newContact.name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Username: </div>
+          <div class="details">
+            <input id="username" type="text" placeholder="username" v-model="newContact.username">
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Email: </div>
+          <div class="details">
+            <input id="email" type="email" placeholder="email" v-model="newContact.email">
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Phone: </div>
+          <div class="details">
+            <input id="phone" type="text" placeholder="xxx-xxx-xxxx" v-model="newContact.phone">
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Address: </div>
+          <div class="details">
+            <input id="street" type="text" placeholder="street" v-model="newContact.address.street"><br>
+            <input id="suite" type="text" placeholder="apt/suite" v-model="newContact.address.suite"><br>
+            <input id="city" type="text" placeholder="city" v-model="newContact.address.city"><br>
+            <input id="zipcode" type="text" placeholder="zipcode" v-model="newContact.address.zipcode">
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Website: </div>
+          <div class="details">
+            <input type="text" placeholder="url" v-model="newContact.website">
+          </div>
+        </div>
+        <button @click="submitContact">Submit</button>
+        <button @click="toggleForm">Cancel</button>
       </div>
     </div>
 
     <div class="card-container">
       <card v-for="contact in filterContacts" v-bind:avatar="avatarType" v-bind:contact="contact" v-bind:key="contact.id"></card>
-      <modal v-for="contact in filterContacts" v-bind:avatar="avatarType" v-bind:contact="contact" v-bind:key="contact.id * 11"></modal>
+      <modal v-for="contact in filterContacts" v-bind:avatar="avatarType" v-bind:contact="contact" v-bind:key="contact.id * 1000"></modal>
     </div>
   </div>
 </body>

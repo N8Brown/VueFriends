@@ -1,3 +1,41 @@
+function Contact(name, username, email, phone, address, website){
+  this.fullCard = false;
+  this.id = app.contacts.length + 1;
+  this.name = name;
+  this.username = username;
+  this.email = email;
+  this.phone = phone;
+  this.address = address;
+  this.website = website;
+};
+
+function Address(street, suite, city, zipcode){
+  this.street = street;
+  this.suite = suite;
+  this.city = city;
+  this.zipcode = zipcode;
+}
+
+function createContact(){
+  let address = new Address(
+    app.newContact.address.street,
+    app.newContact.address.suite,
+    app.newContact.address.city,
+    app.newContact.address.zipcode
+    );
+
+  let contact = new Contact(
+    app.newContact.name,
+    app.newContact.username,
+    app.newContact.email,
+    app.newContact.phone,
+    address,
+    app.newContact.website
+  );
+
+  app.contacts.push(contact);
+}
+
 Vue.component('card',{
   props: ['contact', 'avatar'],
   template:`
@@ -63,6 +101,7 @@ Vue.component('modal',{
   }
 });
 
+
 const app = new Vue({
   el: '#app',
   data: {
@@ -74,6 +113,22 @@ const app = new Vue({
       {text: "Cats", value: "?set=set4"}
     ],
     searchText: "",
+    newContact: {
+      "fullCard": false,
+      "id": null,
+      "name": "",
+      "username": "",
+      "email": "",
+      "address": {
+        "street": "",
+        "suite": "",
+        "city": "",
+        "zipcode": "",
+      },
+      "phone": "",
+      "website": ""
+    },
+    addForm: false,
     contacts:[
       {
         "fullCard": false,
@@ -229,10 +284,31 @@ const app = new Vue({
   },
   computed: {
     filterContacts: function(){
-        return this.contacts.filter(contact => {
-            return (contact.name.toLowerCase().includes(this.searchText.toLowerCase())? contact: null);
-          }
-        )
-      } 
+      return this.contacts.filter(contact => {
+          return (contact.name.toLowerCase().includes(this.searchText.toLowerCase())? contact: null);
+        }
+      )
+    }, 
   },
+  methods: {
+    toggleForm: function(){
+      this.formReset();
+      this.addForm = !this.addForm;
+    },
+    submitContact: function(){
+      createContact();
+      this.addForm = !this.addForm;
+    }, 
+    formReset: function(){
+      this.newContact.name = "";
+      this.newContact.username = "";
+      this.newContact.email = "";
+      this.newContact.phone = "";
+      this.newContact.address.street = "";
+      this.newContact.address.suite = "";
+      this.newContact.address.city = "";
+      this.newContact.address.zipcode = "";
+      this.newContact.website = "";
+    },
+  }
 });
