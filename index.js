@@ -52,13 +52,7 @@ Vue.component('modal',{
           <div class="label">Website: </div>
           <div class="details">{{contact.website}}</div>
         </div>
-
       </section>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
     </div>
   </div>
   `,
