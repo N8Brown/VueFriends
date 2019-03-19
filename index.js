@@ -22,12 +22,37 @@ Vue.component('modal',{
       <header>
         <img class="avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
       </header>
-      <p>Name: {{contact.name}}</p>
-      <p>Username: {{contact.username}}</p>
-      <p>Email: {{contact.email}}</p>
-      <p>Phone: {{contact.phone}}</p>
-      <p>Address: {{contact.address.city}}</p>
-      <p>Website: {{contact.website}}</p>
+      <section>
+        <div class="row">
+          <div class="label">Name: </div>
+          <div class="details">{{contact.name}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Username: </div>
+          <div class="details">{{contact.username}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Email: </div>
+          <div class="details">{{contact.email}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Phone: </div>
+          <div class="details">{{contact.phone}}</div>
+        </div>
+        <div class="row">
+          <div class="label">Address: </div>
+          <div class="details">
+            {{contact.address.street}}<br>
+            {{contact.address.suite}}<br>
+            {{contact.address.city}}<br>
+            {{contact.address.zipcode}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">Website: </div>
+          <div class="details">{{contact.website}}</div>
+        </div>
+      </section>
     </div>
   </div>
   `,

@@ -87,6 +87,25 @@ select {
   margin-top: 0;
 }
 
+.row {
+  display: flex;
+}
+
+.label {
+  flex: 3;
+  text-align: right;
+  margin: 3px;
+  font-weight: 600;
+}
+
+.details {
+  flex-direction: column;
+  flex: 4;
+  text-align: left;
+  margin: 3px;
+  font-weight: 400;
+}
+
 .modal-container {
   position: fixed;
   top: 0;
@@ -103,10 +122,10 @@ select {
 
 .full-card {
   background: radial-gradient(at center, rgb(255, 255, 255),rgb(65, 184, 131), rgb(53, 73, 94));
-  height: 50vh;
-  width: 30vw;
+  height: 450px;
+  width: 380px;
   border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: 6px;
+  border-radius: 12px;
   margin: 10px;
   box-shadow: 5px 8px 10px;
 }
