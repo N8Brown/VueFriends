@@ -55,10 +55,11 @@ Vue.component('card',{
 Vue.component('modal',{
   props: ['contact', 'avatar'],
   template:`
-  <div class="modal-container" :key="contact.id" @click="contactModal" v-if="this.contact.fullCard">
+  <div class="modal-container" :key="contact.id" v-if="this.contact.fullCard">
     <div class="full-card">
       <header>
-        <img class="avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
+        <span class="close" @click="contactModal">&times;</span>
+        <img class="modal-avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
       </header>
       <section>
         <div class="row">
