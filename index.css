@@ -1,69 +1,31 @@
+/* GENERAL STYLING */
+
+:root {
+  --vue-blue: rgb(53, 73, 94);
+  --vue-green: rgb(65, 184, 131);
+  --vue-white: rgb(255, 255, 255);
+  --lin-gradient: linear-gradient(to right,var(--vue-green),var(--vue-white), var(--vue-blue));
+  --rad-gradient: radial-gradient(at center, var(--vue-white),var(--vue-green), var(--vue-blue));
+}
+
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: linear-gradient(to right,rgb(65, 184, 131),rgb(255, 255, 255), rgb(53, 73, 94));
-}
-
-h1 {
-  margin: 0;
-  font-family: 'Bungee Shade', cursive;
-  color: rgb(53, 73, 94);
-}
-
-#app {
+  background: var(--lin-gradient);
   text-align: center;
   font-family: 'Roboto', sans-serif;
-  /* color: rgba(0, 0, 0, .65); */
-  color: rgb(53, 73, 94);
-  padding-bottom: 10px;
+  color: var(--vue-blue);
 }
 
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.contact-card {
-  background: radial-gradient(at center, rgb(255, 255, 255),rgb(65, 184, 131), rgb(53, 73, 94));
-  width: 250px;
-  border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: 6px;
-  margin: 10px;
-  box-shadow: 5px 8px 10px;
-}
-
-.contact-card:hover {
-  transform: scale(1.05);
-}
-
-.contact-card:active {
-  transform: scale(0.95);
-}
-
-.avatar {
-  width: 180px;
-  height: 180px;
-  margin-top: 16px;
-}
-
-.fixed-header {
-  background: linear-gradient(to right,rgb(65, 184, 131),rgb(255, 255, 255), rgb(53, 73, 94));
-  position: fixed;
-  width: 100%;
-  top: 0;
-  padding-bottom: 10px;
-  z-index: 1;
-}
-
-.header-item {
-  padding-bottom: 5px;
+button {
+  background: var(--vue-blue);
+  color: white;
 }
 
 select {
   text-align-last: center;
-  color: rgba(0, 0, 0, .65);
+  color: var(--vue-blue);
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -79,12 +41,58 @@ select {
   text-align: center;
 }
 
-.contact-name {
-  margin-bottom: 0;
+/* APP CONTAINER */
+
+#app {
+  padding-bottom: 10px;
 }
 
-.contact-email {
-  margin-top: 0;
+
+/* FIXED HEADER */
+
+.fixed-header {
+  background: var(--lin-gradient);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding-bottom: 10px;
+  z-index: 1;
+}
+
+.header-item {
+  padding-bottom: 5px;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Bungee Shade', cursive;
+  color: var(--vue-blue);
+}
+
+/* MODALS (Add Contact Form & Full Contact Card) */
+
+.modal-container, .form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, .4);
+}
+
+.full-card, .contact-form {
+  background: var(--rad-gradient);
+  height: 450px;
+  width: 380px;
+  border: 1px solid rgba(0, 0, 0, .5);
+  border-radius: 12px;
+  margin: 10px;
+  box-shadow: 5px 8px 10px;
 }
 
 .row {
@@ -106,40 +114,47 @@ select {
   font-weight: 400;
 }
 
-.modal-container, .form-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
+/* CONTACT CARDS */
+
+.card-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, .4);
 }
 
-.full-card, .contact-form {
-  background: radial-gradient(at center, rgb(255, 255, 255),rgb(65, 184, 131), rgb(53, 73, 94));
-  height: 450px;
-  width: 380px;
+.contact-card {
+  background: var(--rad-gradient);
+  width: 250px;
   border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: 12px;
+  border-radius: 6px;
   margin: 10px;
   box-shadow: 5px 8px 10px;
 }
 
-/* .contact-form {
-  background: radial-gradient(at center, rgb(255, 255, 255),rgb(65, 184, 131), rgb(53, 73, 94));
-  height: 600px;
-  width: 450px;
-  border: 1px solid rgba(0, 0, 0, .5);
-  border-radius: 12px;
-  margin: 10px;
-  box-shadow: 5px 8px 10px;
+.contact-card:hover {
+  transform: scale(1.05);
+}
 
-} */
+.contact-card:active {
+  transform: scale(0.95);
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  margin-top: 16px;
+}
+
+.contact-name {
+  margin-bottom: 0;
+}
+
+.contact-email {
+  margin-top: 0;
+}
+
+
+/* MEDIA QUERIES */
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 599px) {
