@@ -14,7 +14,7 @@ function Address(street, suite, city, zipcode){
   this.suite = suite;
   this.city = city;
   this.zipcode = zipcode;
-}
+};
 
 function createContact(){
   let address = new Address(
@@ -63,33 +63,55 @@ Vue.component('modal',{
       </header>
       <section>
         <div class="row">
-          <div class="label">Name: </div>
-          <div class="details">{{contact.name}}</div>
-        </div>
-        <div class="row">
-          <div class="label">Username: </div>
-          <div class="details">{{contact.username}}</div>
-        </div>
-        <div class="row">
-          <div class="label">Email: </div>
-          <div class="details">{{contact.email}}</div>
-        </div>
-        <div class="row">
-          <div class="label">Phone: </div>
-          <div class="details">{{contact.phone}}</div>
-        </div>
-        <div class="row">
-          <div class="label">Address: </div>
+          <div class="label">
+            <p>Name: </p>
+          </div>
           <div class="details">
-            {{contact.address.street}}<br>
-            {{contact.address.suite}}<br>
-            {{contact.address.city}}<br>
-            {{contact.address.zipcode}}
+            <p>{{contact.name}}</p>
           </div>
         </div>
         <div class="row">
-          <div class="label">Website: </div>
-          <div class="details">{{contact.website}}</div>
+          <div class="label">
+            <p>Username: </p>
+          </div>
+          <div class="details">
+            <p>{{contact.username}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">
+            <p>Email: </p>
+          </div>
+          <div class="details">
+            <p>{{contact.email}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">
+            <p>Phone: </p>
+          </div>
+          <div class="details">
+            <p>{{contact.phone}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">
+            <p>Address: </p>
+          </div>
+          <div class="details">
+            <p>{{contact.address.street}}</p>
+            <p>{{contact.address.suite}}</p>
+            <p>{{contact.address.city}}</p>
+            <p>{{contact.address.zipcode}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="label">
+            <p>Website: </p>
+          </div>
+          <div class="details">
+            <p>{{contact.website}}</p>
+          </div>
         </div>
       </section>
     </div>
@@ -130,6 +152,7 @@ const app = new Vue({
       "website": ""
     },
     addForm: false,
+    fieldRequired: false,
     contacts:[
       {
         "fullCard": false,
@@ -297,8 +320,17 @@ const app = new Vue({
       this.addForm = !this.addForm;
     },
     submitContact: function(){
-      createContact();
-      this.addForm = !this.addForm;
+      if(
+        this.newContact.name === "" || 
+        this.newContact.username === "" || 
+        this.newContact.email === ""
+        ){
+        this.fieldRequired = true;
+        alert("Please fill out the required fields")
+      } else {
+        createContact();
+        this.addForm = !this.addForm;  
+      }
     }, 
     formReset: function(){
       this.newContact.name = "";
@@ -310,6 +342,8 @@ const app = new Vue({
       this.newContact.address.city = "";
       this.newContact.address.zipcode = "";
       this.newContact.website = "";
+      this.formComplete = false;
+      this.fieldRequired = false;
     },
   }
 });

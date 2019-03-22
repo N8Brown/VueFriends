@@ -6,6 +6,7 @@
   --vue-white: rgb(255, 255, 255);
   --lin-gradient: linear-gradient(to right,var(--vue-green),var(--vue-white), var(--vue-blue));
   --rad-gradient: radial-gradient(at center, var(--vue-white),var(--vue-green), var(--vue-blue));
+  --vue-bl-border: rgb(53, 73, 94, .5);
 }
 
 body {
@@ -19,13 +20,31 @@ body {
 }
 
 button {
+  height: 1.75rem;
+  border: 1px solid var(--vue-blue);
+  border-radius: 3px;
   background: var(--vue-blue);
   color: white;
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
+input, select {
+  height: 1.5rem;
+  border: 1px solid var(--vue-bl-border);
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px;
+  color: var(--vue-blue);
+}
+
 select {
   text-align-last: center;
-  color: var(--vue-blue);
+}
+
+input {
+  padding-left: 8px;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -71,6 +90,12 @@ h1 {
 
 /* MODALS (Add Contact Form & Full Contact Card) */
 
+.modal-container, .form-container, .contact-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal-container, .form-container {
   position: fixed;
   top: 0;
@@ -78,20 +103,23 @@ h1 {
   width: 100%;
   height: 100%;
   z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, .4);
+}
+
+.modal-container p, .form-container p {
+  margin: 0;
 }
 
 .full-card, .contact-form {
   background: var(--rad-gradient);
   height: 450px;
   width: 380px;
-  border: 1px solid rgba(0, 0, 0, .5);
+  max-width: 90vw;
+  border: 1px solid var(--vue-bl-border);
   border-radius: 12px;
   margin: 10px;
+  padding: 10px;
   box-shadow: 5px 8px 10px;
 }
 
@@ -100,26 +128,51 @@ h1 {
 }
 
 .label {
-  flex: 3;
+  width: 40%;
   text-align: right;
   margin: 3px;
   font-weight: 600;
 }
 
 .details {
+  width: 55%;
   flex-direction: column;
-  flex: 4;
+  flex-wrap: wrap;
   text-align: left;
   margin: 3px;
   font-weight: 400;
+}
+
+.details p {
+  overflow-wrap: break-word;
+}
+
+.contact-form .label {
+  width: 30%;
+}
+
+.contact-form .details {
+  margin-top: 0;
+  width: 65%
+}
+
+.address {
+  margin-top: 3px;
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+}
+
+.required {
+  border: 1px solid rgb(255, 0, 0);
 }
 
 .close {
   float: right;
   font-weight: bold;
   font-size: 36px;
-  padding-right: 24px;
-  padding-top: .75rem;
+  padding-right: 12px;
   margin-left: -43px;
   cursor: pointer;
 }
@@ -133,6 +186,8 @@ h1 {
   height: 150px;
   margin-top: .75rem;
 }
+
+
 
 /* CONTACT CARDS */
 
@@ -173,6 +228,12 @@ h1 {
   margin-top: 0;
 }
 
+.contact-name, .contact-email {
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
 
 /* MEDIA QUERIES */
 
@@ -184,7 +245,15 @@ h1 {
 
   .card-container {
     padding-top: 160px;
-  }  
+  }
+  
+  .label {
+    width: 30%;
+  }
+
+  .details {
+    width: 65%;
+  }
 } 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
