@@ -14,7 +14,7 @@ function Address(street, suite, city, zipcode){
   this.suite = suite;
   this.city = city;
   this.zipcode = zipcode;
-}
+};
 
 function createContact(){
   let address = new Address(
@@ -130,6 +130,7 @@ const app = new Vue({
       "website": ""
     },
     addForm: false,
+    fieldRequired: false,
     contacts:[
       {
         "fullCard": false,
@@ -297,8 +298,17 @@ const app = new Vue({
       this.addForm = !this.addForm;
     },
     submitContact: function(){
-      createContact();
-      this.addForm = !this.addForm;
+      if(
+        this.newContact.name === "" || 
+        this.newContact.username === "" || 
+        this.newContact.email === ""
+        ){
+        this.fieldRequired = true;
+        alert("Please fill out the required fields")
+      } else {
+        createContact();
+        this.addForm = !this.addForm;  
+      }
     }, 
     formReset: function(){
       this.newContact.name = "";
@@ -310,6 +320,8 @@ const app = new Vue({
       this.newContact.address.city = "";
       this.newContact.address.zipcode = "";
       this.newContact.website = "";
+      this.formComplete = false;
+      this.fieldRequired = false;
     },
   }
 });

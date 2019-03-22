@@ -36,19 +36,19 @@
         <div class="row">
           <div class="label">Name: </div>
           <div class="details">
-            <input id="name" type="text" placeholder="full name" v-model="newContact.name">
+            <input id="name" type="text" placeholder="full name" :class="{required: fieldRequired}" v-model="newContact.name">
           </div>
         </div>
         <div class="row">
           <div class="label">Username: </div>
           <div class="details">
-            <input id="username" type="text" placeholder="username" v-model="newContact.username">
+            <input id="username" type="text" placeholder="username" :class="{required: fieldRequired}" v-model="newContact.username">
           </div>
         </div>
         <div class="row">
           <div class="label">Email: </div>
           <div class="details">
-            <input id="email" type="email" placeholder="email" v-model="newContact.email">
+            <input id="email" type="email" placeholder="email" :class="{required: fieldRequired}" v-model="newContact.email">
           </div>
         </div>
         <div class="row">
@@ -61,9 +61,9 @@
           <div class="label">Address: </div>
           <div class="details">
             <input id="street" type="text" placeholder="street" v-model="newContact.address.street"><br>
-            <input id="suite" type="text" placeholder="apt/suite" v-model="newContact.address.suite"><br>
-            <input id="city" type="text" placeholder="city" v-model="newContact.address.city"><br>
-            <input id="zipcode" type="text" placeholder="zipcode" v-model="newContact.address.zipcode">
+            <input class="address" id="suite" type="text" placeholder="apt/suite" v-model="newContact.address.suite"><br>
+            <input class="address" id="city" type="text" placeholder="city" v-model="newContact.address.city"><br>
+            <input class="address" id="zipcode" type="text" placeholder="zipcode" v-model="newContact.address.zipcode">
           </div>
         </div>
         <div class="row">
@@ -72,8 +72,10 @@
             <input type="text" placeholder="url" v-model="newContact.website">
           </div>
         </div>
-        <button @click="submitContact">Submit</button>
-        <button @click="toggleForm">Cancel</button>
+        <div class="form-footer">
+          <button @click="submitContact">Submit</button>
+          <button @click="toggleForm">Cancel</button>
+        </div>
       </div>
     </div>
 
