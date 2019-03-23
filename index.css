@@ -41,10 +41,12 @@ input, select {
 
 select {
   text-align-last: center;
+  background: white;
 }
 
 input {
   padding-left: 8px;
+  max-width: 90%;
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -243,6 +245,18 @@ h1 {
     font-size: 1.75em;
   }
 
+  .header-item button {
+    height: 1.5rem;
+  }
+
+  .header-item input, .header-item select {
+    height: 1.25rem;
+  }
+
+  .header-item input {
+    margin-bottom: 5px;
+  }
+
   .card-container {
     padding-top: 160px;
   }
@@ -260,7 +274,7 @@ h1 {
 @media only screen and (min-width: 600px) {
   h1 {
     font-size: 2.5em;
-  }  
+  }
 
   .card-container {
     padding-top: 185px;
