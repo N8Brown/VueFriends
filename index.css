@@ -86,6 +86,7 @@ input {
 
 h1 {
   margin: 0;
+  line-height: 1.6;
   font-family: 'Bungee Shade', cursive;
   color: var(--vue-blue);
 }
