@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Bungee+Inline|Bungee+Shade|Roboto"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="index.css" />
     <title>Vue-Friends: Contact Card App</title>
   </head>
@@ -140,10 +141,10 @@
               />
             </div>
           </div>
-          <div class="form-footer">
+          <footer class="form-footer">
             <button @click="submitContact">Submit</button>
             <button @click="toggleForm">Cancel</button>
-          </div>
+          </footer>
         </div>
       </div>
 
@@ -158,7 +159,7 @@
           v-for="contact in filterContacts"
           v-bind:avatar="avatarType"
           v-bind:contact="contact"
-          v-bind:key="contact.id * 1000"
+          v-bind:key="contact.id + 'a'"
         ></modal>
       </div>
     </div>
