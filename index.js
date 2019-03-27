@@ -39,14 +39,15 @@ function createContact() {
 Vue.component("card", {
   props: ["contact", "avatar"],
   template: `
-  <div class="contact-card" :key="contact.id" @click="contactModal">
+  <div class="contact-card" @click="openModal">
     <img class="avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
     <p class="contact-name"><strong>{{contact.name}}</strong></p>
     <p class="contact-email"><strong>{{contact.email}}</strong></p>
   </div>
   `,
   methods: {
-    contactModal: function() {
+    openModal: function() {
+      app.selectedID = this.contact.id;
       this.contact.fullCard = !this.contact.fullCard;
     }
   }
@@ -54,47 +55,66 @@ Vue.component("card", {
 
 Vue.component("modal", {
   props: ["contact", "avatar"],
+  data: function () {
+    return {
+      warn: false,
+      edit: false,
+      editted: {
+        name: "",
+        username: "",
+        email: "",
+        address: {
+          street: "",
+          suite: "",
+          city: "",
+          zipcode: ""  
+        },
+        phone: "",
+        website: ""
+      },
+    }
+  },
   template: `
-  <div class="modal-container" :key="contact.id" v-if="this.contact.fullCard">
-    <div class="full-card">
+  <div class="modal-container" v-if="this.contact.fullCard">
+    <div class="full-card" v-if="!edit">
       <header>
-        <span class="close" @click="contactModal">&times;</span>
+        <span class="close" @click="closeModal" v-if="!edit">&times;</span>
         <img class="modal-avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
       </header>
-      <section>
-        <div class="row">
+      <main>
+        <section class="row">
           <div class="label">
             <p>Name: </p>
           </div>
           <div class="details">
-            <p>{{contact.name}}</p>
+            <p id="name">{{contact.name}}</p>
           </div>
-        </div>
-        <div class="row">
+        </section>
+        <section class="row">
           <div class="label">
             <p>Username: </p>
           </div>
           <div class="details">
             <p>{{contact.username}}</p>
           </div>
-        </div>
-        <div class="row">
+        </section>
+        <section class="row">
           <div class="label">
             <p>Email: </p>
           </div>
           <div class="details">
             <p>{{contact.email}}</p>
           </div>
-        </div>
-        <div class="row">
+        </section>
+        <section class="row">
           <div class="label">
             <p>Phone: </p>
           </div>
           <div class="details">
             <p>{{contact.phone}}</p>
           </div>
-        </div>
-        <div class="row">
+        </section>
+        <section class="row">
           <div class="label">
             <p>Address: </p>
           </div>
@@ -104,29 +124,199 @@ Vue.component("modal", {
             <p>{{contact.address.city}}</p>
             <p>{{contact.address.zipcode}}</p>
           </div>
-        </div>
-        <div class="row">
+        </section>
+        <section class="row">
           <div class="label">
             <p>Website: </p>
           </div>
           <div class="details">
             <p>{{contact.website}}</p>
           </div>
+        </section>
+      </main>
+      <footer>
+        <button @click="toggleEdit">Edit</button>
+        <button @click="toggleWarning">Delete</button>
+      </footer>
+    </div>
+
+    <div class="edit-contact" v-if="edit">
+      <header>
+        <img :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
+      </header>
+      <section class="row">
+        <div class="label">
+          <p>Name: </p>
+        </div>
+        <div class="details">
+          <input
+            id="name"
+            type="text"
+            :placeholder="this.contact.name"
+            v-model="editted.name"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Username: </p>
+        </div>
+        <div class="details">
+          <input
+            id="username"
+            type="text"
+            :placeholder="this.contact.username"
+            v-model="this.editted.username"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Email: </p>
+        </div>
+        <div class="details">
+          <input
+            id="email"
+            type="email"
+            :placeholder="this.contact.email"
+            v-model="this.editted.email"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Phone: </p>
+        </div>
+        <div class="details">
+          <input
+            id="phone"
+            type="text"
+            :placeholder="this.contact.phone"
+            v-model="this.editted.phone"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Address: </p>
+        </div>
+        <div class="details">
+          <input
+            id="street"
+            type="text"
+            :placeholder="this.contact.address.street"
+            v-model="this.editted.address.street"
+          /><br />
+          <input
+            class="address"
+            id="suite"
+            type="text"
+            :placeholder="this.contact.address.suite"
+            v-model="this.editted.address.suite"
+          /><br />
+          <input
+            class="address"
+            id="city"
+            type="text"
+            :placeholder="this.contact.address.city"
+            v-model="this.editted.address.city"
+          /><br />
+          <input
+            class="address"
+            id="zipcode"
+            type="text"
+            :placeholder="this.contact.address.zipcode"
+            v-model="this.editted.address.zipcode"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Website: </p>
+        </div>
+        <div class="details">
+          <input
+            type="text"
+            :placeholder="this.contact.website"
+            v-model="this.editted.website"
+          />
         </div>
       </section>
       <footer>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button @click="updateContact">Done</button>
       </footer>
+    </div>
+    
+    <div class="modal-container alert" v-if="warn">
+      <div class="warning">
+        <header>
+          <h2>WARNING!</h2>
+        </header>
+        <main>
+          <p>Are you sure you want to delete this contact? This action cannot be undone.</p>
+        </main>
+        <footer>
+          <button @click="deleteContact">Delete</button>
+          <button @click="toggleWarning">Cancel</button>
+        </footer>
+      </div>
     </div>
   </div>
   `,
-  methods: {
-    contactModal: function() {
+  methods: {    
+    closeModal: function(){
       this.contact.fullCard = !this.contact.fullCard;
+    },
+    editContact: function(name, username, email, phone, address, website){
+      this.fullCard = true;
+      this.id = app.selectedID;
+      this.name = name;
+      this.username = username;
+      this.email = email;
+      this.phone = phone;
+      this.address = address;
+      this.website = website;
+    },
+    editAddress: function(street, suite, city, zipcode){
+      this.street = street;
+      this.suite = suite;
+      this.city = city;
+      this.zipcode = zipcode;
+    },
+    updateContact: function(){
+      let updatedAddress = new this.editAddress(
+        this.editted.street,
+        this.editted.suite,
+        this.editted.city,
+        this.editted.zipcode
+      );
+      let updatedContact = new this.editContact(
+        this.editted.name,
+        this.editted.username,
+        this.editted.email,
+        this.editted.phone,
+        updatedAddress,
+        this.editted.website
+      );
+
+      app.contacts.splice(app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID})),1, updatedContact);
+      this.toggleEdit();
+    },
+
+    deleteContact: function(){
+      this.toggleWarning();
+      app.contacts.splice(app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID})),1);
+    },
+    toggleWarning: function(){
+      this.warn = !this.warn;
+    },
+    toggleEdit: function(){
+      this.edit = !this.edit;
     }
+
   }
 });
+
 
 const app = new Vue({
   el: "#app",
@@ -154,8 +344,22 @@ const app = new Vue({
       phone: "",
       website: ""
     },
+    // editted: {
+    //   name: "",
+    //   username: "",
+    //   email: "",
+    //   address: {
+    //     street: "",
+    //     suite: "",
+    //     city: "",
+    //     zipcode: ""  
+    //   },
+    //   phone: "",
+    //   website: ""
+    // },
     addForm: false,
     fieldRequired: false,
+    selectedID: 0,
     contacts: [
       {
         fullCard: false,
@@ -318,7 +522,7 @@ const app = new Vue({
           ? contact
           : null;
       });
-    }
+    },
   },
   methods: {
     toggleForm: function() {
@@ -350,6 +554,6 @@ const app = new Vue({
       this.newContact.website = "";
       this.formComplete = false;
       this.fieldRequired = false;
-    }
+    },
   }
 });
