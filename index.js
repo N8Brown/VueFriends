@@ -268,29 +268,31 @@ Vue.component("modal", {
       this.contact.fullCard = !this.contact.fullCard;
     },
     editContact: function(name, username, email, phone, address, website){
-      // let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+      let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
 
       this.fullCard = true;
       this.id = app.selectedID;
-      this.name = name;
-      this.username = username;
-      this.email = email;
-      this.phone = phone;
+      this.name = name.length > 0 ? name : app.contacts[index].name;
+      this.username = username.length > 0 ? username : app.contacts[index].username;
+      this.email = email.length > 0 ? email : app.contacts[index].email;
+      this.phone = phone.length > 0 ? phone : app.contacts[index].phone;
       this.address = address;
-      this.website = website;
+      this.website = website.length > 0 ? website : app.contacts[index].website;
     },
     editAddress: function(street, suite, city, zipcode){
-      this.street = street;
-      this.suite = suite;
-      this.city = city;
-      this.zipcode = zipcode;
+      let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+
+      this.street = street.length > 0 ? street : app.contacts[index].address.street;
+      this.suite = suite.length > 0 ? suite : app.contacts[index].address.suite;
+      this.city = city.length > 0 ? city : app.contacts[index].address.city;
+      this.zipcode = zipcode.length > 0 ? zipcode : app.contacts[index].address.zipcode;
     },
     updateContact: function(){
       let updatedAddress = new this.editAddress(
-        this.editted.street,
-        this.editted.suite,
-        this.editted.city,
-        this.editted.zipcode
+        this.editted.address.street,
+        this.editted.address.suite,
+        this.editted.address.city,
+        this.editted.address.zipcode
       );
       let updatedContact = new this.editContact(
         this.editted.name,
@@ -346,19 +348,6 @@ const app = new Vue({
       phone: "",
       website: ""
     },
-    // editted: {
-    //   name: "",
-    //   username: "",
-    //   email: "",
-    //   address: {
-    //     street: "",
-    //     suite: "",
-    //     city: "",
-    //     zipcode: ""  
-    //   },
-    //   phone: "",
-    //   website: ""
-    // },
     addForm: false,
     fieldRequired: false,
     selectedID: 0,
