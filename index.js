@@ -166,7 +166,7 @@ Vue.component("modal", {
             id="username"
             type="text"
             :placeholder="this.contact.username"
-            v-model="this.editted.username"
+            v-model="editted.username"
           />
         </div>
       </section>
@@ -179,7 +179,7 @@ Vue.component("modal", {
             id="email"
             type="email"
             :placeholder="this.contact.email"
-            v-model="this.editted.email"
+            v-model="editted.email"
           />
         </div>
       </section>
@@ -192,7 +192,7 @@ Vue.component("modal", {
             id="phone"
             type="text"
             :placeholder="this.contact.phone"
-            v-model="this.editted.phone"
+            v-model="editted.phone"
           />
         </div>
       </section>
@@ -205,28 +205,28 @@ Vue.component("modal", {
             id="street"
             type="text"
             :placeholder="this.contact.address.street"
-            v-model="this.editted.address.street"
+            v-model="editted.address.street"
           /><br />
           <input
             class="address"
             id="suite"
             type="text"
             :placeholder="this.contact.address.suite"
-            v-model="this.editted.address.suite"
+            v-model="editted.address.suite"
           /><br />
           <input
             class="address"
             id="city"
             type="text"
             :placeholder="this.contact.address.city"
-            v-model="this.editted.address.city"
+            v-model="editted.address.city"
           /><br />
           <input
             class="address"
             id="zipcode"
             type="text"
             :placeholder="this.contact.address.zipcode"
-            v-model="this.editted.address.zipcode"
+            v-model="editted.address.zipcode"
           />
         </div>
       </section>
@@ -238,7 +238,7 @@ Vue.component("modal", {
           <input
             type="text"
             :placeholder="this.contact.website"
-            v-model="this.editted.website"
+            v-model="editted.website"
           />
         </div>
       </section>
@@ -268,6 +268,8 @@ Vue.component("modal", {
       this.contact.fullCard = !this.contact.fullCard;
     },
     editContact: function(name, username, email, phone, address, website){
+      // let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+
       this.fullCard = true;
       this.id = app.selectedID;
       this.name = name;
