@@ -13,8 +13,8 @@
     <title>Vue-Friends: Contact Card App</title>
   </head>
   <body>
-    <div id="app">
-      <div class="fixed-header">
+    <main id="app">
+      <header class="fixed-header">
         <div>
           <h1>Vue-Friends</h1>
         </div>
@@ -36,11 +36,11 @@
           />
           <button @click="toggleForm">Add Friend</button>
         </div>
-      </div>
+      </header>
 
-      <div class="form-container" v-if="addForm">
+      <section class="form-container" v-if="addForm">
         <div class="contact-form">
-          <div class="row">
+          <section class="row">
             <div class="label">
               <p>Name:</p>
             </div>
@@ -53,8 +53,8 @@
                 v-model="newContact.name"
               />
             </div>
-          </div>
-          <div class="row">
+          </section>
+          <section class="row">
             <div class="label">
               <p>Username:</p>
             </div>
@@ -67,8 +67,8 @@
                 v-model="newContact.username"
               />
             </div>
-          </div>
-          <div class="row">
+          </section>
+          <section class="row">
             <div class="label">
               <p>Email:</p>
             </div>
@@ -81,8 +81,8 @@
                 v-model="newContact.email"
               />
             </div>
-          </div>
-          <div class="row">
+          </section>
+          <section class="row">
             <div class="label">
               <p>Phone:</p>
             </div>
@@ -94,8 +94,8 @@
                 v-model="newContact.phone"
               />
             </div>
-          </div>
-          <div class="row">
+          </section>
+          <section class="row">
             <div class="label">
               <p>Address:</p>
             </div>
@@ -113,23 +113,35 @@
                 placeholder="apt/suite"
                 v-model="newContact.address.suite"
               /><br />
+            </div>
+          </section>
+          <section class="row">
+            <div class="label">
+              <p>City: </p>
+            </div>
+            <div class="details">
               <input
-                class="address"
-                id="city"
-                type="text"
-                placeholder="city"
-                v-model="newContact.address.city"
-              /><br />
-              <input
-                class="address"
-                id="zipcode"
-                type="text"
-                placeholder="zipcode"
-                v-model="newContact.address.zipcode"
+              id="city"
+              type="text"
+              placeholder="city"
+              v-model="newContact.address.city"
               />
             </div>
-          </div>
-          <div class="row">
+          </section>
+          <section class="row">
+            <div class="label">
+              <p>Zipcode: </p>
+            </div>
+            <div class="details">
+              <input
+              id="zipcode"
+              type="text"
+              placeholder="zipcode"
+              v-model="newContact.address.zipcode"
+              />
+            </div>
+          </section>
+          <section class="row">
             <div class="label">
               <p>Website:</p>
             </div>
@@ -140,13 +152,13 @@
                 v-model="newContact.website"
               />
             </div>
-          </div>
+          </section>
           <footer class="form-footer">
             <button @click="submitContact">Submit</button>
             <button @click="toggleForm">Cancel</button>
           </footer>
         </div>
-      </div>
+      </section>
 
       <div class="card-container">
         <card
@@ -162,7 +174,7 @@
           v-bind:key="contact.id + 'a'"
         ></modal>
       </div>
-    </div>
+    </main>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="index.js"></script>

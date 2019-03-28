@@ -1,41 +1,3 @@
-function Contact(name, username, email, phone, address, website) {
-  this.fullCard = false;
-  this.id = app.contacts.length + 1;
-  this.name = name;
-  this.username = username;
-  this.email = email;
-  this.phone = phone;
-  this.address = address;
-  this.website = website;
-}
-
-function Address(street, suite, city, zipcode) {
-  this.street = street;
-  this.suite = suite;
-  this.city = city;
-  this.zipcode = zipcode;
-}
-
-function createContact() {
-  let address = new Address(
-    app.newContact.address.street,
-    app.newContact.address.suite,
-    app.newContact.address.city,
-    app.newContact.address.zipcode
-  );
-
-  let contact = new Contact(
-    app.newContact.name,
-    app.newContact.username,
-    app.newContact.email,
-    app.newContact.phone,
-    address,
-    app.newContact.website
-  );
-
-  app.contacts.push(contact);
-}
-
 Vue.component("card", {
   props: ["contact", "avatar"],
   template: `
@@ -121,7 +83,21 @@ Vue.component("modal", {
           <div class="details">
             <p>{{contact.address.street}}</p>
             <p>{{contact.address.suite}}</p>
+          </div>
+        </section>
+        <section class="row">
+          <div class="label">
+            <p>City: </p>
+          </div>
+          <div class="details">
             <p>{{contact.address.city}}</p>
+          </div>
+        </section>
+        <section class="row">
+          <div class="label">
+            <p>Zipcode: </p>
+          </div>
+          <div class="details">
             <p>{{contact.address.zipcode}}</p>
           </div>
         </section>
@@ -213,21 +189,33 @@ Vue.component("modal", {
             type="text"
             :placeholder="this.contact.address.suite"
             v-model="editted.address.suite"
-          /><br />
-          <input
-            class="address"
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>City: </p>
+        </div>
+        <div class="details">
+         <input
             id="city"
             type="text"
             :placeholder="this.contact.address.city"
             v-model="editted.address.city"
-          /><br />
+          />
+        </div>
+      </section>
+      <section class="row">
+        <div class="label">
+          <p>Zipcode: </p>
+        </div>
+        <div class="details">
           <input
-            class="address"
             id="zipcode"
             type="text"
             :placeholder="this.contact.address.zipcode"
             v-model="editted.address.zipcode"
-          />
+          />    
         </div>
       </section>
       <section class="row">
@@ -269,23 +257,25 @@ Vue.component("modal", {
     },
     editContact: function(name, username, email, phone, address, website){
       let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+      let current = app.contacts[index];
 
       this.fullCard = true;
       this.id = app.selectedID;
-      this.name = name.length > 0 ? name : app.contacts[index].name;
-      this.username = username.length > 0 ? username : app.contacts[index].username;
-      this.email = email.length > 0 ? email : app.contacts[index].email;
-      this.phone = phone.length > 0 ? phone : app.contacts[index].phone;
+      this.name = name.length > 0 ? name : current.name;
+      this.username = username.length > 0 ? username : current.username;
+      this.email = email.length > 0 ? email : current.email;
+      this.phone = phone.length > 0 ? phone : current.phone;
       this.address = address;
-      this.website = website.length > 0 ? website : app.contacts[index].website;
+      this.website = website.length > 0 ? website : current.website;
     },
     editAddress: function(street, suite, city, zipcode){
       let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+      let current = app.contacts[index];
 
-      this.street = street.length > 0 ? street : app.contacts[index].address.street;
-      this.suite = suite.length > 0 ? suite : app.contacts[index].address.suite;
-      this.city = city.length > 0 ? city : app.contacts[index].address.city;
-      this.zipcode = zipcode.length > 0 ? zipcode : app.contacts[index].address.zipcode;
+      this.street = street.length > 0 ? street : current.address.street;
+      this.suite = suite.length > 0 ? suite : current.address.suite;
+      this.city = city.length > 0 ? city : current.address.city;
+      this.zipcode = zipcode.length > 0 ? zipcode : current.address.zipcode;
     },
     updateContact: function(){
       let updatedAddress = new this.editAddress(
@@ -516,11 +506,48 @@ const app = new Vue({
     },
   },
   methods: {
-    toggleForm: function() {
+    toggleForm: function(){
       this.formReset();
       this.addForm = !this.addForm;
     },
-    submitContact: function() {
+    Contact: function(name, username, email, phone, address, website){
+      let nextID = app.contacts.length + 1;
+
+      this.fullCard = false;
+      this.id = nextID;
+      this.name = name;
+      this.username = username;
+      this.email = email;
+      this.phone = phone;
+      this.address = address;
+      this.website = website;
+    },
+    Address: function(street, suite, city, zipcode){
+      this.street = street;
+      this.suite = suite;
+      this.city = city;
+      this.zipcode = zipcode;
+    },
+    createContact: function(){
+      let address = new this.Address(
+        this.newContact.address.street,
+        this.newContact.address.suite,
+        this.newContact.address.city,
+        this.newContact.address.zipcode
+      );
+    
+      let contact = new this.Contact(
+        this.newContact.name,
+        this.newContact.username,
+        this.newContact.email,
+        this.newContact.phone,
+        address,
+        this.newContact.website
+      );
+    
+      this.contacts.push(contact);
+    },
+    submitContact: function(){
       if (
         this.newContact.name === "" ||
         this.newContact.username === "" ||
@@ -529,11 +556,11 @@ const app = new Vue({
         this.fieldRequired = true;
         alert("Please fill out the required fields");
       } else {
-        createContact();
+        this.createContact();
         this.addForm = !this.addForm;
       }
     },
-    formReset: function() {
+    formReset: function(){
       this.newContact.name = "";
       this.newContact.username = "";
       this.newContact.email = "";
