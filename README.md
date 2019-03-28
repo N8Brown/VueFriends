@@ -2,13 +2,13 @@
 
 The VueFriends contact card web app is based on a tutorial project called _Robofriends_ from Andrei Neagoie's Udemy course, _[The Complete Web Developer in 2019: Zero to Mastery](https://www.udemy.com/the-complete-web-developer-zero-to-mastery/)_. It's a wonderful course and I highly recommend it!
 
-The original project was created using React, and utlizes the [Robohash](https://robohash.org/) and [JSONPlaceholder](https://jsonplaceholder.typicode.com/) APIs to create a series of contact cards with unique robot avatars for a sample list of contacts/friends. Additionally, the [Tachyons](https://tachyons.io/) CSS toolkit is used for quick styling. The finished tutorial project culminated in an application that featured contact cards that displayed the contact's name and email, as well as an avatar. The project included a search field that would filter the contacts displayed based on whether the name of a given contact contained whatever was entered into the search field. The purpose of the tutorial project was to introduce students to reactive, component-based web development using the React framework.
+The original tutorial project was created using React, and utlizes the [Robohash](https://robohash.org/) and [JSONPlaceholder](https://jsonplaceholder.typicode.com/) APIs to create a series of contact cards with unique robot avatars for a sample list of contacts/friends. Additionally, the [Tachyons](https://tachyons.io/) CSS toolkit is used for quick styling. The application featured contact cards that displayed the contact's name and email, as well as an avatar. The project included a search field that would filter the displayed contacts based on whether their names contained whatever was entered into the search field. The purpose of the tutorial project was to introduce students to reactive, component-based web development using the React framework.
 
 In an effort to learn something new, I decided to recreate this project using Vue instead of React. I was curious how the two would compare both from a learning standpoint as well as use standpoint. Unlike the tutorial project, I do not utilize the Tachyons CSS toolkit in VueFriends. Instead all styling, with the exception of the media queries template, which was taken from W3Schools, was coded from scratch. Additionally, I wanted to add features that were not part of the original project and that would provide further challenges and learning opportunities. In addition to building an app that displayed component-based, filterable contact cards, VueFriends also includes the following:
 
 _**Full Robohash Use**_
 
-While the tutorial project only utilized robot avatars from the Robohash API, I decided to make use of the variety of avatar types the API provides:
+While the tutorial project only utilized robot avatars from the Robohash API, I decided to make use of the various types of avatars the API provides:
 
 - Robots
 - Monsters
@@ -19,14 +19,14 @@ The VueFriends application includes an option for the user to select which type 
 
 _**Full Contact Card**_
 
-The main view of the application displays contact cards for all contacts in the contact list. Like the tutorial project, these contact cards feature an avatar for the contact, the contact's name, and the contact's email address. The object structure for the contact list allows for a lot more information such as:
+The main view of the application displays contact cards for all contacts in the contact list. Like the tutorial project, these contact cards feature an avatar for the contact, the contact's name, and the contact's email address. The object structure for the contact list, however, allows for a lot more information to be stored and used, such as:
 
 - Username
 - Phone Number
 - Address
 - Website
 
-In order to display the entirety of the contact's information, the VueFriends application allows the user to click on a contact card to dispaly an expanded, or full, contact card containing all of the contact's information. The expanded contact card also provides the user the option to edit the contact information or delete the contact altogether.
+In order to display the entirety of the contact's information, the VueFriends application allows the user to click on a contact card to dispaly an expanded, or full, contact card containing all of the contact's additional information as well as their name and email address. The expanded contact card also provides the user the option to edit the contact information or delete the contact altogether.
 
 _**Edit Contact**_
 
@@ -34,7 +34,7 @@ Clicking on the **Edit** button on the expanded contact card will change the con
 
 _**Delete Contact**_
 
-Clicking on the **Delete** button on the expanded contact card will display a warning asking the user if they wish to delete the selected contact, while informing them that the action cannot be undone. The user can choose to continue and delete the contact from the list, thereby removing the contact card and data, or they cancel the action.
+Clicking on the **Delete** button on the expanded contact card will display a warning asking the user if they wish to delete the selected contact, while informing them that the action cannot be undone. The user can choose to continue and delete the contact from the list, thereby removing the contact card and data, or they can cancel the action.
 
 _**Add New Contact**_
 
