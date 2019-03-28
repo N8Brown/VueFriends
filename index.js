@@ -17,7 +17,7 @@ Vue.component("card", {
 
 Vue.component("modal", {
   props: ["contact", "avatar"],
-  data: function () {
+  data: function() {
     return {
       warn: false,
       edit: false,
@@ -29,12 +29,12 @@ Vue.component("modal", {
           street: "",
           suite: "",
           city: "",
-          zipcode: ""  
+          zipcode: ""
         },
         phone: "",
         website: ""
-      },
-    }
+      }
+    };
   },
   template: `
   <div class="modal-container" v-if="this.contact.fullCard">
@@ -118,7 +118,7 @@ Vue.component("modal", {
 
     <div class="edit-contact" v-if="edit">
       <header>
-        <img :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
+        <img class="modal-avatar" :src='"https://robohash.org/" + contact.id + avatar' alt="Robot Friend">
       </header>
       <section class="row">
         <div class="label">
@@ -251,12 +251,16 @@ Vue.component("modal", {
     </div>
   </div>
   `,
-  methods: {    
-    closeModal: function(){
+  methods: {
+    closeModal: function() {
       this.contact.fullCard = !this.contact.fullCard;
     },
-    editContact: function(name, username, email, phone, address, website){
-      let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+    editContact: function(name, username, email, phone, address, website) {
+      let index = app.contacts.indexOf(
+        app.contacts.find(obj => {
+          return obj.id === app.selectedID;
+        })
+      );
       let current = app.contacts[index];
 
       this.fullCard = true;
@@ -268,8 +272,12 @@ Vue.component("modal", {
       this.address = address;
       this.website = website.length > 0 ? website : current.website;
     },
-    editAddress: function(street, suite, city, zipcode){
-      let index = app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID}));
+    editAddress: function(street, suite, city, zipcode) {
+      let index = app.contacts.indexOf(
+        app.contacts.find(obj => {
+          return obj.id === app.selectedID;
+        })
+      );
       let current = app.contacts[index];
 
       this.street = street.length > 0 ? street : current.address.street;
@@ -277,7 +285,7 @@ Vue.component("modal", {
       this.city = city.length > 0 ? city : current.address.city;
       this.zipcode = zipcode.length > 0 ? zipcode : current.address.zipcode;
     },
-    updateContact: function(){
+    updateContact: function() {
       let updatedAddress = new this.editAddress(
         this.editted.address.street,
         this.editted.address.suite,
@@ -293,24 +301,37 @@ Vue.component("modal", {
         this.editted.website
       );
 
-      app.contacts.splice(app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID})),1, updatedContact);
+      app.contacts.splice(
+        app.contacts.indexOf(
+          app.contacts.find(obj => {
+            return obj.id === app.selectedID;
+          })
+        ),
+        1,
+        updatedContact
+      );
       this.toggleEdit();
     },
 
-    deleteContact: function(){
+    deleteContact: function() {
       this.toggleWarning();
-      app.contacts.splice(app.contacts.indexOf(app.contacts.find(obj =>{return obj.id === app.selectedID})),1);
+      app.contacts.splice(
+        app.contacts.indexOf(
+          app.contacts.find(obj => {
+            return obj.id === app.selectedID;
+          })
+        ),
+        1
+      );
     },
-    toggleWarning: function(){
+    toggleWarning: function() {
       this.warn = !this.warn;
     },
-    toggleEdit: function(){
+    toggleEdit: function() {
       this.edit = !this.edit;
     }
-
   }
 });
-
 
 const app = new Vue({
   el: "#app",
@@ -503,14 +524,14 @@ const app = new Vue({
           ? contact
           : null;
       });
-    },
+    }
   },
   methods: {
-    toggleForm: function(){
+    toggleForm: function() {
       this.formReset();
       this.addForm = !this.addForm;
     },
-    Contact: function(name, username, email, phone, address, website){
+    Contact: function(name, username, email, phone, address, website) {
       let nextID = app.contacts.length + 1;
 
       this.fullCard = false;
@@ -522,20 +543,20 @@ const app = new Vue({
       this.address = address;
       this.website = website;
     },
-    Address: function(street, suite, city, zipcode){
+    Address: function(street, suite, city, zipcode) {
       this.street = street;
       this.suite = suite;
       this.city = city;
       this.zipcode = zipcode;
     },
-    createContact: function(){
+    createContact: function() {
       let address = new this.Address(
         this.newContact.address.street,
         this.newContact.address.suite,
         this.newContact.address.city,
         this.newContact.address.zipcode
       );
-    
+
       let contact = new this.Contact(
         this.newContact.name,
         this.newContact.username,
@@ -544,10 +565,10 @@ const app = new Vue({
         address,
         this.newContact.website
       );
-    
+
       this.contacts.push(contact);
     },
-    submitContact: function(){
+    submitContact: function() {
       if (
         this.newContact.name === "" ||
         this.newContact.username === "" ||
@@ -560,7 +581,7 @@ const app = new Vue({
         this.addForm = !this.addForm;
       }
     },
-    formReset: function(){
+    formReset: function() {
       this.newContact.name = "";
       this.newContact.username = "";
       this.newContact.email = "";
@@ -572,6 +593,6 @@ const app = new Vue({
       this.newContact.website = "";
       this.formComplete = false;
       this.fieldRequired = false;
-    },
+    }
   }
 });
